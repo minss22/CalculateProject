@@ -2,7 +2,7 @@ package com.example.calculator2;
 import java.util.ArrayList;
 
 public class Calculator {
-    ArrayList<Double> list_result = new ArrayList<>();
+    private ArrayList<Double> list_result = new ArrayList<>();
 
     public double calculate(int n1, int n2, String symbol) {
         double result = switch (symbol) { // 계산 결과
@@ -18,5 +18,13 @@ public class Calculator {
             default -> throw new RuntimeException("️⚠️사칙연산 기호를 잘못 입력했습니다.");
         };
         return result;
+    }
+
+    public ArrayList<Double> getList_result() {
+        return list_result;
+    }
+
+    public void setList_result(ArrayList<Double> list_result) {
+        this.list_result = list_result;
     }
 }

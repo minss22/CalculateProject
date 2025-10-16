@@ -1,6 +1,8 @@
 package com.example.calculator2;
+import java.util.ArrayList;
 
 public class Calculator {
+    ArrayList<Double> list_result = new ArrayList<>();
 
     public double calculate(int n1, int n2, String symbol) {
         double result = switch (symbol) { // 계산 결과

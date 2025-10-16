@@ -20,11 +20,11 @@ public class Calculator {
         return result;
     }
 
-    public ArrayList<Double> getList_result() {
+    public ArrayList<Double> getResult() {
         return list_result;
     }
 
-    public void setList_result(ArrayList<Double> list_result) {
-        this.list_result = list_result;
+    public void setResult(double result) {
+        this.list_result.add(result);
     }
 }

@@ -20,16 +20,18 @@ public class App {
                 }
 
                 double result = cal.calculate(n1, n2, symbol);
-                System.out.printf("결과: %d %s %d = %s\n", n1, symbol, n2, result);
+                String result_str = (result % 1 == 0) ? String.format("%.0f", result) : String.valueOf(result);
+                System.out.printf("결과: %d %s %d = %s\n", n1, symbol, n2, result_str);
 
-                cal.setResult(result); // 세터
+                cal.setResult(result_str); // 세터
                 if (cal.getResult().size() > 1)
                     cal.removeResult();
                 System.out.println("클래스에 저장된 결과: " + cal.getResult()); // 게터
             } catch (RuntimeException e) { // 예외 처리
                 System.out.println(e.getMessage());
             }
-            System.out.println("\n\n더 계산하려면 아무 키나 입력해주세요. (exit 입력 시 종료)");
+
+            System.out.println("\n더 계산하려면 아무 키나 입력해주세요. (exit 입력 시 종료)");
             sc.nextLine(); // 개행문자 제거
             answer = sc.nextLine(); // 개행문자도 인식
         } while (!answer.equals("exit"));

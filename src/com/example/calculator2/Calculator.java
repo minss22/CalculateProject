@@ -1,0 +1,20 @@
+package com.example.calculator2;
+
+public class Calculator {
+
+    public double calculate(int n1, int n2, String symbol) {
+        double result = switch (symbol) { // 계산 결과
+            case "+" -> n1 + n2;
+            case "-" -> n1 - n2;
+            case "*" -> n1 * n2;
+            case "/" -> {
+                if (n2 == 0) {
+                    throw new RuntimeException("️⚠️나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.");
+                }
+                yield n1 / (double) n2;
+            }
+            default -> throw new RuntimeException("️⚠️사칙연산 기호를 잘못 입력했습니다.");
+        };
+        return result;
+    }
+}

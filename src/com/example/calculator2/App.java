@@ -2,10 +2,11 @@ package com.example.calculator2;
 import java.util.Scanner;
 public class App {
     public static void main(String[] args) {
+        Calculator cal = new Calculator();
         Scanner sc = new Scanner(System.in);
+        String answer = "";
 
-        String answer;
-        do {
+        do { // 반복문
             try {
                 System.out.print("첫 번째 숫자를 입력하세요: ");
                 int n1 = sc.nextInt();
@@ -17,11 +18,13 @@ public class App {
                 if (n1 < 0 || n2 < 0) { // 양의 정수(0 포함)를 입력받기
                     throw new RuntimeException("⚠️양의 정수를 입력해주세요.");
                 }
-                Calculator cal = new Calculator();
-                double result = cal.calculate(n1, n2, symbol);
 
-                System.out.printf("결과: %d %s %d = %s", n1, symbol, n2, result);
-            } catch (RuntimeException e) {
+                double result = cal.calculate(n1, n2, symbol);
+                System.out.printf("결과: %d %s %d = %s\n", n1, symbol, n2, result);
+
+                cal.setResult(result); // 세터
+                System.out.println("결과 기록: " + cal.getResult());
+            } catch (RuntimeException e) { // 예외 처리
                 System.out.println(e.getMessage());
             }
             System.out.println("\n\n더 계산하려면 아무 키나 입력해주세요. (exit 입력 시 종료)");

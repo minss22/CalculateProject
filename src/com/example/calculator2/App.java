@@ -23,7 +23,9 @@ public class App {
                 System.out.printf("결과: %d %s %d = %s\n", n1, symbol, n2, result);
 
                 cal.setResult(result); // 세터
-                System.out.println("결과 기록: " + cal.getResult());
+                if (cal.getResult().size() > 1)
+                    cal.removeResult();
+                System.out.println("클래스에 저장된 결과: " + cal.getResult()); // 게터
             } catch (RuntimeException e) { // 예외 처리
                 System.out.println(e.getMessage());
             }

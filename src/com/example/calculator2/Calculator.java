@@ -25,6 +25,10 @@ public class Calculator {
     }
 
     public void setResult(double result) {
-        this.list_result.add(result);
+        this.list_result.add(result); // 데이터 추가
+    }
+
+    public void removeResult() {
+        this.list_result.remove(0); // 가장 먼저 저장된 데이터 삭제
     }
 }

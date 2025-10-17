@@ -4,7 +4,10 @@ import java.util.ArrayList;
 public class ArithmeticCalculator {
     private ArrayList<String> list_result = new ArrayList<>();
 
-    public double calculate(int n1, int n2, String symbol) {
+    public <S extends Number> double calculate(S x, S y, String symbol) {
+        double n1 = x.doubleValue();
+        double n2 = y.doubleValue();
+
         if (OperatorType.PLUS.getSymbol().equals(symbol)) {
             return n1 + n2;
         } else if (OperatorType.MINUS.getSymbol().equals(symbol)) {

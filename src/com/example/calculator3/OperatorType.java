@@ -4,7 +4,7 @@ public enum OperatorType {
     PLUS("+"),
     MINUS("-"),
     MULTIPLY("*"),
-    DIVIDE("-");
+    DIVIDE("/");
 
     private final String symbol;
 
@@ -15,5 +15,4 @@ public enum OperatorType {
     public String getSymbol() {
         return symbol;
     }
-
 }

@@ -10,9 +10,9 @@ public class App {
         do { // 반복문
             try {
                 System.out.print("첫 번째 숫자를 입력하세요: ");
-                int n1 = sc.nextInt();
+                double n1 = sc.nextDouble();
                 System.out.print("두 번째 숫자를 입력하세요: ");
-                int n2 = sc.nextInt();
+                double n2 = sc.nextDouble();
                 System.out.print("사칙연산 기호(+, -, *, /)를 입력하세요: ");
                 String symbol = sc.next();
 
@@ -21,8 +21,11 @@ public class App {
                 }
 
                 double result = cal.calculate(n1, n2, symbol);
+
+                String n1_str = (n1 % 1 == 0) ? String.format("%.0f", n1) : String.valueOf(n1);
+                String n2_str = (n2 % 1 == 0) ? String.format("%.0f", n2) : String.valueOf(n2);
                 String result_str = (result % 1 == 0) ? String.format("%.0f", result) : String.valueOf(result);
-                System.out.printf("결과: %d %s %d = %s\n", n1, symbol, n2, result_str);
+                System.out.printf("결과: %s %s %s = %s\n", n1_str, symbol, n2_str, result_str);
 
                 cal.setResult(result_str); // 세터
                 if (cal.getResult().size() > 1)

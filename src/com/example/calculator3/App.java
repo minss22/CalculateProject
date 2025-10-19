@@ -1,4 +1,5 @@
 package com.example.calculator3;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class App {
@@ -8,23 +9,29 @@ public class App {
         String answer = "";
 
         do { // 반복문
-            if (answer.equals("del")) {
-                if (!cal.getResult().isEmpty())
-                    cal.removeResult(); // 데이터 삭제
-            } else {
-                try {
+            try {
+                if (answer.equals("del")) {
+                    if (!cal.getResult().isEmpty())
+                        cal.removeResult(); // 데이터 삭제
+                } else {
                     System.out.println("==========[계산기]==========");
                     System.out.print("첫 번째 숫자를 입력하세요: ");
                     double n1 = sc.nextDouble();
+                    if (n1 < 0) {
+                        sc.nextLine(); // 개행문자 제거
+                        throw new RuntimeException("⚠️양의 정수를 입력해주세요.");
+                    }
+
                     System.out.print("두 번째 숫자를 입력하세요: ");
                     double n2 = sc.nextDouble();
+                    if (n2 < 0) {
+                        sc.nextLine(); // 개행문자 제거
+                        throw new RuntimeException("⚠️양의 정수를 입력해주세요.");
+                    }
+
                     System.out.print("사칙연산 기호(+, -, *, /)를 입력하세요: ");
                     String symbol = sc.next();
                     sc.nextLine(); // 개행문자 제거
-
-                    if (n1 < 0 || n2 < 0) { // 양의 정수(0 포함)를 입력받기
-                        throw new RuntimeException("⚠️양의 정수를 입력해주세요.");
-                    }
 
                     double result = cal.calculate(n1, n2, symbol);
 
@@ -34,12 +41,13 @@ public class App {
                     System.out.printf("결과: %s %s %s = %s\n", n1_str, symbol, n2_str, result_str);
 
                     cal.setResult(result_str); // 세터
-                } catch (RuntimeException e) { // 예외 처리
-                    System.out.println(e.getMessage());
                 }
+                System.out.println("컬렉션에 저장된 결과: " + cal.getResult()); // 게터
+            } catch (InputMismatchException e) {
+                System.out.println("⚠️숫자만 입력할 수 있습니다.");
+            } catch (RuntimeException e) { // 예외 처리
+                System.out.println(e.getMessage());
             }
-
-            System.out.println("컬렉션에 저장된 결과: " + cal.getResult()); // 게터
 
             System.out.println("\n더 계산하려면 아무 키나 입력해주세요.");
             System.out.println(" - (exit 입력 시 종료)");

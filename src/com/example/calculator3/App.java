@@ -1,5 +1,4 @@
 package com.example.calculator3;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class App {
@@ -16,18 +15,14 @@ public class App {
                 } else {
                     System.out.println("==========[계산기]==========");
                     System.out.print("첫 번째 숫자를 입력하세요: ");
-                    double n1 = sc.nextDouble();
-                    if (n1 < 0) {
-                        sc.nextLine(); // 개행문자 제거
-                        throw new RuntimeException("⚠️양의 정수를 입력해주세요.");
-                    }
+                    String input1 = sc.nextLine();
+                    double n1 = Double.parseDouble(input1);
+                    if (n1 < 0) throw new RuntimeException("⚠️0 이상의 수를 입력해주세요.");
 
                     System.out.print("두 번째 숫자를 입력하세요: ");
-                    double n2 = sc.nextDouble();
-                    if (n2 < 0) {
-                        sc.nextLine(); // 개행문자 제거
-                        throw new RuntimeException("⚠️양의 정수를 입력해주세요.");
-                    }
+                    String input2 = sc.nextLine();
+                    double n2 = Double.parseDouble(input2);
+                    if (n2 < 0) throw new RuntimeException("⚠️0 이상의 수를 입력해주세요.");
 
                     System.out.print("사칙연산 기호(+, -, *, /)를 입력하세요: ");
                     String symbol = sc.next();
@@ -43,7 +38,7 @@ public class App {
                     cal.setResult(result_str); // 세터
                 }
                 System.out.println("컬렉션에 저장된 결과: " + cal.getResult()); // 게터
-            } catch (InputMismatchException e) {
+            } catch (NumberFormatException e) {
                 System.out.println("⚠️숫자만 입력할 수 있습니다.");
             } catch (RuntimeException e) { // 예외 처리
                 System.out.println(e.getMessage());

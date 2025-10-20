@@ -8,20 +8,12 @@ public class ArithmeticCalculator {
         double n1 = x.doubleValue();
         double n2 = y.doubleValue();
 
-        if (OperatorType.PLUS.getSymbol().equals(symbol)) {
-            return n1 + n2;
-        } else if (OperatorType.MINUS.getSymbol().equals(symbol)) {
-            return n1 - n2;
-        } else if (OperatorType.MULTIPLY.getSymbol().equals(symbol)) {
-            return n1 * n2;
-        } else if (OperatorType.DIVIDE.getSymbol().equals(symbol)) {
-            if (n2 == 0) {
-                throw new RuntimeException("️⚠️나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.");
+        for (OperatorType op : OperatorType.values()) { // 모든 객체를 순서대로 불러옴
+            if (op.getSymbol().equals(symbol)) { // 기호가 같으면
+                return op.apply(n1, n2); // 연산 후 리턴
             }
-            return (double) n1 / n2;
-        } else {
-            throw new RuntimeException("️⚠️사칙연산 기호를 잘못 입력했습니다.");
         }
+        throw new RuntimeException("️⚠️사칙연산 기호를 잘못 입력했습니다.");
     }
 
     public ArrayList<String> getResult() {

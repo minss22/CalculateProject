@@ -6,7 +6,7 @@ public class Calculator {
         Scanner sc = new Scanner(System.in);
 
         String answer;
-        do {
+        do { // ✅ do-while 반복문
             try {
                 System.out.print("첫 번째 숫자를 입력하세요: ");
                 int n1 = sc.nextInt();
@@ -18,7 +18,7 @@ public class Calculator {
                 if (n1 < 0 || n2 < 0) {
                     throw new RuntimeException("⚠️양의 정수를 입력해주세요.");
                 }
-                double result = switch (symbol) { // 계산 결과
+                double result = switch (symbol) { // ✅ 향상된 switch 문으로 계산 결과 받기
                     case "+" -> n1 + n2;
                     case "-" -> n1 - n2;
                     case "*" -> n1 * n2;
@@ -33,11 +33,11 @@ public class Calculator {
 
                 System.out.printf("결과: %d %s %d = %s", n1, symbol, n2, result);
             } catch (RuntimeException e) {
-                System.out.println(e.getMessage());
+                System.out.println(e.getMessage()); // ✅ 예외 처리 메시지
             }
             System.out.println("\n\n더 계산하려면 아무 키나 입력해주세요. (exit 입력 시 종료)");
             sc.nextLine(); // 개행문자 제거
             answer = sc.nextLine(); // 개행문자도 인식
-        } while (!answer.equals("exit"));
+        } while (!answer.equals("exit")); // ✅ exit 입력 시 종료
     }
 }

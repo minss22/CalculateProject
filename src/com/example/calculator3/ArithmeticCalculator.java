@@ -1,5 +1,6 @@
 package com.example.calculator3;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ArithmeticCalculator {
     private ArrayList<String> list_result = new ArrayList<>();
@@ -24,7 +25,11 @@ public class ArithmeticCalculator {
         this.list_result.add(result); // ✅ 데이터 추가
     }
 
-    public void removeResult() {
-        this.list_result.remove(0); // ✅ 먼저 저장된 데이터 삭제
+    public void removeResult() { // ✅ 먼저 저장된 데이터 삭제
+        this.list_result.remove(0);
+    }
+
+    public List<String> searchResult(double n) { // ✅ 특정 값보다 큰 데이터 반환
+        return list_result.stream().filter(x -> Double.parseDouble(x) > n).toList(); // ✅ 스트림 & 람다식 적용
     }
 }

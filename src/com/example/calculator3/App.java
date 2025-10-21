@@ -12,15 +12,14 @@ public class App {
             try { // ✅ try-catch
                 if (answer.equals("del")) {
                     if (!cal.getResult().isEmpty())
-                        cal.removeResult(); // 데이터 삭제
+                        cal.removeResult(); // 데이터 삭제 메서드
                 } else if (answer.equals("search")) {
                     System.out.println("\n리스트에서 입력된 값보다 큰 결과값을 조회할 수 있습니다.");
                     System.out.print("값을 입력하세요: ");
                     String input = sc.nextLine();
                     double n = Double.parseDouble(input);
 
-                    List<String> bigger = cal.getResult().stream()
-                            .filter(x -> Double.parseDouble(x) > n).toList(); // ✅ 스트림 & 람다식 적용
+                    List<String> bigger = cal.searchResult(n); // 데이터 조회 메서드
                     System.out.println("결과: " + bigger);
                 } else {
                     // ✅ 입력받기
